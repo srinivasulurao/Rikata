@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Capture\"><param name=\"android-package\" value=\"org.apache.cordova.mediacapture.Capture\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -32,7 +36,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 2
+                            "count": 3
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
@@ -55,6 +59,9 @@
             "PACKAGE_NAME": "com.phonegap.rikata"
         },
         "org.apache.cordova.media-capture": {
+            "PACKAGE_NAME": "com.phonegap.rikata"
+        },
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.phonegap.rikata"
         }
     },

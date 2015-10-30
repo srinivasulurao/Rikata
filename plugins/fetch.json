@@ -25,11 +25,10 @@
     },
     "cordova-plugin-file": {
         "source": {
-            "type": "git",
-            "url": "https://github.com/onflapp/cordova-plugin-file.git",
-            "subdir": "."
+            "type": "registry",
+            "id": "cordova-plugin-file"
         },
-        "is_top_level": true,
+        "is_top_level": false,
         "variables": {}
     },
     "cordova-plugin-media": {
@@ -53,6 +52,23 @@
         "source": {
             "type": "registry",
             "id": "org.apache.cordova.media-capture"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\user2\\AppData\\Local\\Intel\\XDK\\xdk\\components\\server\\cordova-plugins\\cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-file-transfer": {
+        "source": {
+            "type": "git",
+            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
