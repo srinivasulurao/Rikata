@@ -51,7 +51,7 @@ body {
     background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
-    top:50%;
+    top:40%;
     height:50px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;
@@ -118,4 +118,21 @@ h1 {
 
 .small_heading{
   font-size:10px !important;
+}
+
+.videoChooser{
+    text-align:center;
+    margin-top:20%;
+}
+
+#videoArea{
+    text-align: center;
+    margin-top:40px;
+}
+video{
+    width:95%;
+    height:200px;
+    border:5px solid black;
+    margin:auto;
+    border-radius:4px;
 }
