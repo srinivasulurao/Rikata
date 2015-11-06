@@ -28,22 +28,30 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 
     <title>Welcome to RIKATA</title>
+    <link rel="stylesheet" href="css/jquery-mobile/jquery.mobile-1.4.5.min.css">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
 
 
    <div class="videoChooser" style="background:none !important;">
 
-   <a href='javascript:void(0)' id='taakeVideo' class="btn btn-lg btn-primary" style="width:95%" onclick="captureVideo()" >Record Video</a> <br>
+   <a href='javascript:void(0)' id='taakeVideo' class="btn btn-lg btn-primary" style="color:white;width:95%" onclick="captureVideo()" >Record Video</a> <br>
    <div style="color:white;margin:10px;">---OR---</div>
-   <a href='javascript:void(0)' class="btn btn-lg btn-primary" style="width:95%" onclick='chooseFromGallery()'>Choose From Gallery</a>
+   <a href='javascript:void(0)' class="btn btn-lg btn-primary" style="color:white;width:95%" onclick='chooseFromGallery()'>Choose From Gallery</a>
        <div id="videoArea"></div>
+       <input name='videoSource' type='hidden' id='videoSource'>
+       <input name='videoLength' type='hidden' id='videoLength'>
+       <div id='rangeSliderG' style='display:none;width:95%;margin:auto'><div data-role="rangeslider"><input name="range-1a" id="range-1a" min="0" max="100" value="0" type="range"><input name="range-1b" id="range-1b" min="0" max="100" value="100" type="range"></div></div>
+       <div id='selectQuality'></div>
+       <a id='trimVideo' href='javascript:void(0)' onclick="trimVideo()" class='btn btn-lg btn-success' style='display:none;margin:auto;margin-top:10px;color:white;width:50%;color:white;'>CUT</a>
    </div>
 
-<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="cordova.js"></script>  
 <script type="text/javascript" src="js/rikata.js"></script>
 <script type="text/javascript">
     app.initialize();
 </script>
+  <script src="js/jquery-mobile/jquery-1.10.2.min.js"></script>
+  <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>    
 </body>
 </html>

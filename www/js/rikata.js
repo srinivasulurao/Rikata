@@ -76,82 +76,156 @@ function BackVar(){
 //###############################################################################################
 //Capture Video & Show.                                                                         #
 //###############################################################################################
+
+duration=2; // Lets make the duration 2 secs as of now.
+
 function captureVideo(){
 navigator.device.capture.captureVideo(videoCaptureSuccess,videoCaptureFailed);
     //console.log("Its Working");
 }
 
 var videoCaptureSuccess=function videoCaptureSuccess(s){
-    var v = "<video controls='controls'>";
+    console.dir(s);
+    var v = "<video controls='controls' id='videoAction'>";
     v += "<source src='" + s[0].fullPath + "' type='video/mp4'>";
     v += "</video>";
+    
     document.querySelector("#videoArea").innerHTML = v;
+    document.getElementById('videoSource').value=s[0].fullPath;
+    document.getElementById('videoLength').value=duration;
+    invokeRangeSlider();
+    invokeQualitySelect();
+    enableTrim();
 };
 
 document.addEventListener("backbutton", BackVar, false);
 
 
 var videoCaptureFailed=function videoCaptureFailed(e){
-    console.log("Capture Error :","Something is wrong with the plugin!");
+    
+    document.querySelector("#videoArea").innerHTML ="";
+    document.getElementById('videoSource').value="";
+    document.getElementById('videoLength').value="";
+    removeQualitySelect();
+    removeRangeSlider();
+    disableTrim();
+    alert("Process Terminated !");
+    
 };
 
 //###############################################################################################
 //Select Video & Show.                                                                          #
 //###############################################################################################
 
-document.addEventListener("deviceready", makeFileSystemReady, true);
-var globalFileSystem;
-function makeFileSystemReady(){
- window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemError);
-}
-
-
-function onFileSystemSuccess(fs){
-    globalFileSystem=fs; //Initialized the global file system.
-}
-
-
-function onFileSystemError(){
-    console.log("Unable to fetch the data from your phone !");
-}
-
 function chooseFromGallery(){
-
-var dirReader = globalFileSystem.root.createReader();
-dirReader.readEntries(galleryFiles,galleryFilesErrors);
+    navigator.camera.getPicture(videoTakenFromGallerySuccess,videoTakenFromGalleryFailed,{ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+               mediaType:navigator.camera.MediaType.VIDEO,allowEdit:true,
+                                         });
 }
 
-function galleryFiles(entries){
-        var s = "<p style='color:white'>";
-        console.dir(entries);
-        for(var i=0,len=entries.length; i<len; i++) {
-        //entry objects include: isFile, isDirectory, name, fullPath
-        s+= entries[i].fullPath;
-            
-            if (entries[i].isFile) {
-            s += " [F]";
-            }
-            if(entries[i].isDirectory) {
-                innerDir=entries[i].filesystem.root.createReader();
-                innerDir.readEntries(galleryFiles,galleryFilesErrors);
-            s += " [D]";
-            }
-        s += "<br/>";
-
-        }
-        s+="<p/>";
+function videoTakenFromGallerySuccess(res){
+    var v = "<video controls='controls' id='videoAction'>";
+    v += "<source src='" + res + "' type='video/mp4'>";
+    v += "</video>";
+    choosenVideo=document.getElementById('videoAction');
+   
+    document.querySelector("#videoArea").innerHTML = v;
+    document.getElementById('videoSource').value=res;
+    document.getElementById('videoLength').value=duration;
+    invokeRangeSlider();
+    invokeQualitySelect();
+    enableTrim();
     
-    document.getElementById('videoArea').innerHTML=s;
 }
 
-function galleryFilesErrors(){
-    alert("Unable to use the file system !");
+function mediaSuccess(){
 }
 
+function mediaError(){
+    
+}
 
+function videoTakenFromGalleryFailed(res){
+    document.querySelector("#videoArea").innerHTML ="";
+    document.getElementById('videoSource').value="";
+    document.getElementById('videoLength').value="";
+    removeQualitySelect();
+    removeRangeSlider();
+    disableTrim();
+    alert("Process Terminated !");
+}
 
 
 //###############################################################################################
+//Start Cutting the Video.                                                                      #
+//###############################################################################################
 
+function invokeRangeSlider(){
+    var minRange=0;
+    var maxRange=document.getElementById('videoLength').value;
+    $('#rangeSliderG').show();
+}
 
+function removeRangeSlider(){
+    $('#rangeSliderG').hide();
+}
 
+function invokeQualitySelect(){
+    var qualitySelect="<select class='form-control' style='margin-top:10px;width:95%;display:block;margin:auto'>";
+    qualitySelect+="<option value=''>--SELECT QUALITY--</option><option value='50'>Low</option><option value='75'>Medium</option><option value='100'>High</option>";
+    qualitySelect+="</select>";
+    document.getElementById('selectQuality').innerHTML=qualitySelect;
+}
+
+function removeQualitySelect(){
+    document.getElementById('selectQuality').innerHTML='';
+}
+
+function disableTrim(){
+    $('#trimVideo').hide();
+}
+
+function enableTrim(){
+    $('#trimVideo').show();
+}
+
+function trimVideo(){
+    cordova.plugins.barcodeScanner.scan(
+      function (result) {
+          alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+      }, 
+      function (error) {
+          alert("Scanning failed: " + error);
+      }
+   );
+}
+
+function trimVideoOLd(){
+    
+    var rikata_date=new Date();
+    var videoFilePath=$('#videoSource').val();
+    var videoFileName="Video-"+rikata_date.getFullYear()+"-"+rikata_date.getMonth()+"-"+rikata_date.getDate()+"-"+rikata_date.getHours()+"-"+rikata_date.getMinutes()+"-"+rikata_date.getSeconds();
+    console.log(videoFileName);
+    
+    VideoEditor.transcodeVideo(
+        videoTranscodeSuccess,
+        videoTranscodeError,
+        {
+            fileUri: videoFilePath, 
+            outputFileName: videoFileName
+        }
+    );
+    
+}
+
+function videoTranscodeSuccess(result){
+    alert("Video Trimming Saved Successfully");
+}
+  
+function videoTranscodeError(err){
+    console.log(err);
+     alert("Unable to process your request!");
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/E:/PhoneGapProjects/Rikata/platforms/android/org.apache.cordova.videoeditor/rikata-android-ffmpeg-java/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">android-ffmpeg-library</string>
+    <!-- From: file:/E:/PhoneGapProjects/Rikata/platforms/android/org.apache.cordova.videoeditor/rikata-android-ffmpeg-java/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppTheme" parent="android:Theme.Light"/>
+</resources>

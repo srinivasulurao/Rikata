@@ -33,9 +33,8 @@
     },
     "cordova-plugin-media": {
         "source": {
-            "type": "git",
-            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-media.git",
-            "subdir": "."
+            "type": "registry",
+            "id": "cordova-plugin-media"
         },
         "is_top_level": true,
         "variables": {}
@@ -69,6 +68,23 @@
             "type": "git",
             "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
             "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.apache.cordova.videoeditor": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jbavari/cordova-plugin-video-editor.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-barcodescanner": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-barcodescanner"
         },
         "is_top_level": true,
         "variables": {}

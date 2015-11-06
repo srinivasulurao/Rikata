@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "",
       "projectGuid": "717d8359-c257-4ce2-b4d6-460fc1d2695f",
-      "lastModifiedDate": 1446188743461,
+      "lastModifiedDate": 1446621069107,
       "creationDate": 1446187492149
     },
     "sourceDirectory": "www",
@@ -31,15 +31,14 @@
       {
         "id": "cordova-plugin-media",
         "name": "Media",
-        "version": "1.0.2-dev",
-        "originType": "repo",
-        "origin": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-media.git",
+        "version": "1.0.1",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-media",
         "gitref": "",
-        "subdir": ".",
         "paramvals": {},
         "sourceLocation": "plugins/cordova-plugin-media",
         "selectedState": "Included",
-        "checksum": "387e6414",
+        "checksum": "93cdda44",
         "dependsOn": [],
         "topLevel": true,
         "permissions": {
@@ -142,32 +141,48 @@
         "dependedBy": []
       },
       {
-        "version": "1.0.1",
-        "sourceLocation": "",
-        "selectedState": "Auto",
-        "name": "Device",
-        "originType": "cordova.io",
-        "id": "cordova-plugin-device",
-        "origin": "cordova-plugin-device",
-        "data": {},
+        "id": "cordova-plugin-file-transfer",
+        "name": "File Transfer",
+        "version": "1.3.1-dev",
+        "originType": "repo",
+        "origin": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
+        "gitref": "",
+        "subdir": ".",
         "paramvals": {},
-        "permissions": {},
+        "sourceLocation": "plugins/cordova-plugin-file-transfer",
+        "selectedState": "Included",
+        "checksum": "abe9b3f4",
         "dependsOn": [],
+        "topLevel": true,
+        "permissions": {
+          "android:name": [
+            "android.permission.WRITE_EXTERNAL_STORAGE"
+          ]
+        },
+        "description": "Cordova File Transfer Plugin",
+        "data": {},
         "dependedBy": []
       },
       {
-        "version": "2.1.0",
-        "sourceLocation": "",
-        "selectedState": "Auto",
-        "name": "Splashscreen",
-        "originType": "cordova.io",
-        "id": "cordova-plugin-splashscreen",
-        "origin": "cordova-plugin-splashscreen",
-        "data": {},
+        "id": "org.apache.cordova.videoeditor",
+        "name": "VideoEditor",
+        "version": "0.0.3",
+        "originType": "repo",
+        "origin": "https://github.com/jbavari/cordova-plugin-video-editor.git",
+        "gitref": "",
+        "subdir": ".",
         "paramvals": {},
-        "permissions": {},
+        "sourceLocation": "plugins/org.apache.cordova.videoeditor",
+        "selectedState": "Included",
+        "checksum": "af042bd4",
         "dependsOn": [],
-        "dependedBy": []
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {},
+        "description": "A plugin to assist in video editing tasks",
+        "data": {},
+        "dependedBy": [],
+        "custom": "true"
       }
     ],
     "serviceMethods": [],
@@ -394,6 +409,6 @@
     }
   },
   "editorTab": {
-    "showLiveDevelopmentTasksPanel": true
+    "showLiveDevelopmentTasksPanel": false
   }
 }
