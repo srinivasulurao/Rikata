@@ -29,6 +29,20 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-video-editor/www/VideoEditor.js",
+        "id": "cordova-plugin-video-editor.VideoEditor",
+        "clobbers": [
+            "VideoEditor"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-video-editor/www/VideoEditorOptions.js",
+        "id": "cordova-plugin-video-editor.VideoEditorOptions",
+        "clobbers": [
+            "VideoEditorOptions"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "id": "cordova-plugin-whitelist.whitelist",
         "runs": true
@@ -108,27 +122,6 @@ module.exports = [
         "id": "org.apache.cordova.media-capture.capture",
         "clobbers": [
             "navigator.device.capture"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.videoeditor/www/VideoEditor.js",
-        "id": "org.apache.cordova.videoeditor.VideoEditor",
-        "clobbers": [
-            "VideoEditor"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.videoeditor/www/VideoEditorOptions.js",
-        "id": "org.apache.cordova.videoeditor.VideoEditorOptions",
-        "clobbers": [
-            "VideoEditorOptions"
-        ]
-    },
-    {
-        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
-        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
-        "clobbers": [
-            "cordova.plugins.barcodeScanner"
         ]
     },
     {
@@ -283,11 +276,10 @@ module.exports.metadata =
 {
     "cordova-plugin-file-transfer": "1.3.1-dev",
     "cordova-plugin-media": "1.0.1",
+    "cordova-plugin-video-editor": "1.0.0",
     "cordova-plugin-whitelist": "1.0.0",
     "org.apache.cordova.camera": "0.3.6",
     "org.apache.cordova.media-capture": "0.3.6",
-    "org.apache.cordova.videoeditor": "0.0.3",
-    "phonegap-plugin-barcodescanner": "4.1.0",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA

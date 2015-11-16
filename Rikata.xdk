@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "",
       "projectGuid": "717d8359-c257-4ce2-b4d6-460fc1d2695f",
-      "lastModifiedDate": 1446621069107,
+      "lastModifiedDate": 1447174140815,
       "creationDate": 1446187492149
     },
     "sourceDirectory": "www",
@@ -19,6 +19,13 @@
     "projectFiles": {},
     "projectDirectories": {
       "xdk": {
+        "settings": {
+          "project": {
+            "XDK-generated": "true"
+          }
+        }
+      },
+      "xdk/services/iodocs": {
         "settings": {
           "project": {
             "XDK-generated": "true"
@@ -166,15 +173,15 @@
       {
         "id": "org.apache.cordova.videoeditor",
         "name": "VideoEditor",
-        "version": "0.0.3",
+        "version": "0.1.1",
         "originType": "repo",
-        "origin": "https://github.com/jbavari/cordova-plugin-video-editor.git",
+        "origin": "https://github.com/shotclip-team/cordova-plugin-video-editor.git",
         "gitref": "",
         "subdir": ".",
         "paramvals": {},
         "sourceLocation": "plugins/org.apache.cordova.videoeditor",
         "selectedState": "Included",
-        "checksum": "af042bd4",
+        "checksum": "fb1f57f0",
         "dependsOn": [],
         "topLevel": true,
         "cordovaVersion": ">=3.0.0",

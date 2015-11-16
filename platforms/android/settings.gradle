@@ -1,5 +1,5 @@
 // GENERATED FILE - DO NOT EDIT
 include ":"
 include ":CordovaLib"
-include ":org.apache.cordova.videoeditor:android-ffmpeg-java"
-project(":org.apache.cordova.videoeditor:android-ffmpeg-java").projectDir = new File("org.apache.cordova.videoeditor/rikata-android-ffmpeg-java")
+include ":cordova-plugin-video-editor:android-ffmpeg-java"
+project(":cordova-plugin-video-editor:android-ffmpeg-java").projectDir = new File("cordova-plugin-video-editor/rikata-android-ffmpeg-java")
