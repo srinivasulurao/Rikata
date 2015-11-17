@@ -242,10 +242,10 @@ function getVideoDuration(){
 }
 function trimVideo(){
     //validate to choose the quality.
-//    if($('#videoQuality').val()=="" || $('#videoQuality').val()==null){
-//        alert("Please Select Video Quality !");
-//        return null;
-//    }
+   if($('#videoQuality').val()=="" || $('#videoQuality').val()==null){
+       alert("Please Select Video Quality !");
+       return null;
+   }
 
     var rikata_date=new Date();
     var videoFilePath=$('#videoSource').val();
