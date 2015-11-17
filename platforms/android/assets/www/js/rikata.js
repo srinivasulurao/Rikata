@@ -74,7 +74,7 @@ function BackVar(){
     document.getElementById('videoArea').innerHTML=ajaxLoader;
     setTimeout(function () {
     window.location='index.html';
-    },3000);
+    },1500);
 }
 
 //###############################################################################################
@@ -97,9 +97,11 @@ var videoCaptureSuccess=function videoCaptureSuccess(s){
     document.querySelector("#videoArea").innerHTML = v;
     document.getElementById('videoSource').value=s[0].fullPath;
     document.getElementById('videoLength').value=duration;
+
     invokeRangeSlider();
     invokeQualitySelect();
     enableTrim();
+
 };
 
 document.addEventListener("backbutton", BackVar, false);
@@ -128,19 +130,14 @@ function chooseFromGallery(){
 }
 
 function videoTakenFromGallerySuccess(res){
-    var video = "<video controls='controls' id='videoAction' src='"+res+"'></video>";
+    var video = "<video controls='controls' preload='none' id='videoAction' src='"+res+"'></video>";
     document.getElementById("videoArea").innerHTML = video;
     document.getElementById('videoSource').value=res;
-    
-    var vid=document.getElementById('videoAction');
-    vid.load();
-    console.dir(vid);
-    
+
     //document.getElementById('videoLength').value=duration;
     invokeRangeSlider();
     invokeQualitySelect();
     enableTrim();
-    
 }
 
 function mediaSuccess(){
@@ -203,6 +200,7 @@ function enableTrim(){
 document.addEventListener("deviceready", createRikataFolder, false);
 
 function discoPlay(playFrameTime){
+    getVideoDuration();
     var vid=document.getElementById('videoAction');
     vid.play();
     vid.currentTime=playFrameTime;
@@ -224,14 +222,31 @@ function RikataDirectoryFail(){
 }
 
 var videoFileName="";
+//Have to use a recursion approach.
+function getVideoDuration(){
+    var durian=document.getElementById('videoAction').duration;
+    console.log(parseInt(durian));
+    if(parseInt(durian)){
 
+        if(document.getElementById('range-1b').max!=Math.ceil(durian)){
+        document.getElementById('range-1b').value=Math.ceil(durian);
+        document.getElementById('range-1b').max=Math.ceil(durian);
+        document.getElementById('range-1a').max=Math.ceil(durian);
+        }
+
+    return Math.ceil(durian);
+
+    }
+    else
+       return 100;
+}
 function trimVideo(){
     //validate to choose the quality.
 //    if($('#videoQuality').val()=="" || $('#videoQuality').val()==null){
 //        alert("Please Select Video Quality !");
 //        return null;
 //    }
-    
+
     var rikata_date=new Date();
     var videoFilePath=$('#videoSource').val();
     var durationStart=$('#range-1a').val();
