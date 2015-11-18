@@ -276,7 +276,7 @@ module.exports.metadata =
 {
     "cordova-plugin-file-transfer": "1.3.1-dev",
     "cordova-plugin-media": "1.0.1",
-    "cordova-plugin-video-editor": "1.0.0",
+    "cordova-plugin-video-editor": "1.0.1",
     "cordova-plugin-whitelist": "1.0.0",
     "org.apache.cordova.camera": "0.3.6",
     "org.apache.cordova.media-capture": "0.3.6",

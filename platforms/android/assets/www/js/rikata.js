@@ -221,7 +221,7 @@ function RikataDirectoryFail(){
     alert("Storage Error: Unable to generate Rikata Videos Folder!");
 }
 
-var videoFileName="";
+
 //Have to use a recursion approach.
 function getVideoDuration(){
     var durian=document.getElementById('videoAction').duration;
@@ -240,6 +240,10 @@ function getVideoDuration(){
     else
        return 100;
 }
+
+var videoFileName="";
+var qualitySelected=VideoEditorOptions.Quality.LOW_QUALITY;
+
 function trimVideo(){
     //validate to choose the quality.
    if($('#videoQuality').val()=="" || $('#videoQuality').val()==null){
@@ -252,24 +256,15 @@ function trimVideo(){
     var durationStart=$('#range-1a').val();
     var durationEnd=$('#range-1b').val();
     
-    var qualitySelected=VideoEditorOptions.Quality.LOW_QUALITY;
     
-//
-//    if($('#videoQuality').val()=="high"){
-//        var qualitySelected=VideoEditorOptions.Quality.HIGH_QUALITY;
-//    }
-//    else if($('#videoQuality').val()=="low"){
-//        var qualitySelected=VideoEditorOptions.Quality.LOW_QUALITY;
-//    }
-//    else{
-//        var qualitySelected=VideoEditorOptions.Quality.MEDIUM_QUALITY;
-//    }
-//    
+   
     videoFileName="Video-"+rikata_date.getFullYear()+"-"+rikata_date.getMonth()+"-"+rikata_date.getDate()+"-"+rikata_date.getHours()+"-"+rikata_date.getMinutes()+"-"+rikata_date.getSeconds();
     console.log('FileName:',videoFileName);
     console.log('FilePath:',videoFilePath);
     console.log('trimStart:',durationStart);
     console.log('trimEnd:',durationEnd);
+    
+    
     
     $('#videoArea').html("<div class='' style='padding-top:20px;text-align:center'>"+ajaxLoader+"<br>Please wait ..</div>");
     removeQualitySelect();
@@ -277,38 +272,72 @@ function trimVideo(){
     $('#trimVideo').hide();
     
     
-    VideoEditor.trim(
-        videoTrimSuccess,
-        videoTrimError,
-        {
-            fileUri: videoFilePath, 
-            outputFileName: videoFileName,
-            trimStart:durationStart,
-            trimEnd:durationEnd
-        }
-    )
+     VideoEditor.trim(
+         videoTrimSuccess,
+         videoTrimError,
+         {
+             fileUri: videoFilePath, 
+             outputFileName: videoFileName,
+             trimStart:durationStart,
+             trimEnd:durationEnd
+         });
+
     
-//    VideoEditor.transcodeVideo(
-//    videoTrimSuccess, // success cb
-//    videoTrimError, // error cb
-//    {
-//        fileUri: videoFilePath, 
-//        outputFileName: videoFileName,
-//        quality: VideoEditorOptions.Quality.MEDIUM_QUALITY,
-//        optimizeForNetworkUse: VideoEditorOptions.OptimizeForNetworkUse.NO,
-//        duration: durationEnd // optional, specify duration in seconds from start of video
-//    }
-//)
     
 }
 
-function videoTrimSuccess(result){
+function videoTranscodeSuccess(result){
     console.log(result);
+    $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-up success-thumbs-up'></i><div class='outputMessenger' style='background:lightgreen'><i class=''></i>Video Trimming & Transcoding Successful, Your File Destination is <b>Rikata-Videos/"+videoFileName+"</b></div>");
+
+    
+}
+
+function videoTranscodeError(err){
+  console.log(err);
+     $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-down danger-thumbs-down'></i><div class='outputMessenger' style='background:tomato;color:white'>"+err+"</div>");
+  
+}
+
+
+
+function videoTrimSuccess(result){
+    
+    
+//    if($('#videoQuality').val()=="high"){
+//       var qualitySelected=VideoEditorOptions.Quality.HIGH_QUALITY;
+//   }
+//   else if($('#videoQuality').val()=="low"){
+//       var qualitySelected=VideoEditorOptions.Quality.LOW_QUALITY;
+//   }
+//   else{
+//       var qualitySelected=VideoEditorOptions.Quality.MEDIUM_QUALITY;
+//   }
+//    
+//    
+//    
+//    console.log("file:"+result);
+//    console.log(qualitySelected);
+//    console.log(videoFileName);
+//    
+//   // Now Start Transcoding.
+//   VideoEditor.transcodeVideo(
+//   videoTranscodeSuccess, // success transcoding.
+//   videoTranscodeError, // error transcoding.
+//   {
+//       fileUri: "file:"+result, 
+//       outputFileName: videoFileName,
+//       quality: qualitySelected,
+//       deleteInputFile: true
+//   });
+
     $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-up success-thumbs-up'></i><div class='outputMessenger' style='background:lightgreen'><i class=''></i>Video Trimming Successful, File Saved with name <br>"+videoFileName+"</div>");
 }
   
+
 function videoTrimError(err){
      console.log(err);
-     $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-down danger-thumbs-down'></i><div class='outputMessenger' style='background:tomato;color:white'>Your Request Can't be processed, there is a video plugin issue!</div>");
+     $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-down danger-thumbs-down'></i><div class='outputMessenger' style='background:tomato;color:white'>"+err+"</div>");
 
 }
+
