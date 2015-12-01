@@ -194,7 +194,7 @@ public class VideoEditor extends CordovaPlugin {
 
         if (saveToLibrary) {
             mediaStorageDir = new File(
-                Environment.getExternalStorageDirectory() + "/Rikata-Videos",
+                Environment.getExternalStorageDirectory() + "/Rikata-Media-Files",
                 appName
             );
         } else {
@@ -332,7 +332,7 @@ public class VideoEditor extends CordovaPlugin {
         //final File tempDir = this.getTempDir(appContext, outputFileExt);
         
         final File tempDir = new File(
-                    Environment.getExternalStorageDirectory() + "/Rikata-Videos");
+                    Environment.getExternalStorageDirectory() + "/Rikata-Media-Files");
 
          if (!tempDir.exists()) {
             if (!tempDir.mkdir()) {
@@ -732,7 +732,7 @@ public class VideoEditor extends CordovaPlugin {
 
         if (saveToLibrary) {
             mediaStorageDir = new File(
-                    Environment.getExternalStorageDirectory() + "/Rikata-Videos",
+                    Environment.getExternalStorageDirectory() + "/Rikata-Media-Files",
                     appName
             );
         } else {

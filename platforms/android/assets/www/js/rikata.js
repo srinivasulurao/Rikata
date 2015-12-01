@@ -115,7 +115,7 @@ var videoCaptureFailed=function videoCaptureFailed(e){
     removeQualitySelect();
     removeRangeSlider();
     disableTrim();
-    alert("Process Terminated !");
+    //alert("Process Terminated !");
     
 };
 
@@ -125,13 +125,42 @@ var videoCaptureFailed=function videoCaptureFailed(e){
 
 function chooseFromGallery(){
     navigator.camera.getPicture(videoTakenFromGallerySuccess,videoTakenFromGalleryFailed,{ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-               mediaType:navigator.camera.MediaType.VIDEO,allowEdit:true,
+               mediaType:navigator.camera.MediaType.ALLMEDIA,allowEdit:true,
                                          });
 }
 
 function videoTakenFromGallerySuccess(res){
+
+    res_array=res.split("image");
+    var image=res_array.length;
+
+    res_array=res.split("audio");
+    var audio=res_array.length;
+
+    res_array=res.split("video");
+    var video=res_array.length;
+
+    if(image > 1){
+        alert("Image Files are not allowed !");
+        document.querySelector("#videoArea").innerHTML ="";
+        document.getElementById('videoSource').value="";
+        document.getElementById('videoLength').value="";
+        removeQualitySelect();
+        removeRangeSlider();
+        disableTrim();
+        return false;
+    }
+    else if(audio > 1){
+    var audio = "<audio controls='controls' preload='none' id='videoAction' src='"+res+"'></audio>";
+    document.getElementById("videoArea").innerHTML = audio;
+    }
+    else
+    {
     var video = "<video controls='controls' preload='none' id='videoAction' src='"+res+"'></video>";
     document.getElementById("videoArea").innerHTML = video;
+    }
+
+    
     document.getElementById('videoSource').value=res;
 
     //document.getElementById('videoLength').value=duration;
@@ -211,7 +240,7 @@ function createRikataFolder() {
 }
 
 function RikataDirectorySuccess(fileSystem) {
-   fileSystem.root.getDirectory("Rikata-Videos", {create: true}, gotDir);
+   fileSystem.root.getDirectory("Rikata-Media-Files", {create: true}, gotDir);
 }
 
 function gotDir(dirEntry) {
@@ -258,7 +287,7 @@ function trimVideo(){
     
     
    
-    videoFileName="Video-"+rikata_date.getFullYear()+"-"+rikata_date.getMonth()+"-"+rikata_date.getDate()+"-"+rikata_date.getHours()+"-"+rikata_date.getMinutes()+"-"+rikata_date.getSeconds();
+    videoFileName="Media-"+rikata_date.getFullYear()+"-"+rikata_date.getMonth()+"-"+rikata_date.getDate()+"-"+rikata_date.getHours()+"-"+rikata_date.getMinutes()+"-"+rikata_date.getSeconds();
     console.log('FileName:',videoFileName);
     console.log('FilePath:',videoFilePath);
     console.log('trimStart:',durationStart);
@@ -331,7 +360,7 @@ function videoTrimSuccess(result){
 //       deleteInputFile: true
 //   });
 
-    $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-up success-thumbs-up'></i><div class='outputMessenger' style='background:lightgreen'><i class=''></i>Video Trimming Successful, File Saved with name <br>"+videoFileName+"</div>");
+    $('#videoArea').html("<i class='glyphicon glyphicon-thumbs-up success-thumbs-up'></i><div class='outputMessenger' style='background:lightgreen'><i class=''></i>Media Trimming Successful, File Saved with name <br>"+videoFileName+"</div>");
 }
   
 
